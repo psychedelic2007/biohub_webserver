@@ -22,14 +22,13 @@ from util.pages.Theory_corner import theory
 ga_code = "G-0QYCJ9186C"
 if ga_code:
     st.write(f'<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QYCJ9186C"></script>', unsafe_allow_html=True)
-    st.write("""
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0QYCJ9186C');
-        </script>
-    """ % ga_code, unsafe_allow_html=True)
+    st.write("""<script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0QYCJ9186C');
+            </script>
+        """ % ga_code, unsafe_allow_html=True)
     
 app = MultiApp()
 
