@@ -18,6 +18,19 @@ from util.pages.phylo_try import phylo_try
 from util.pages.phylo_try1 import phylo_try1
 from util.pages.Theory_corner import theory
 
+# Google Analytics tracking code
+ga_code = "G-0QYCJ9186C"
+if ga_code:
+    st.write(f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_code}"></script>', unsafe_allow_html=True)
+    st.write("""
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '%s');
+        </script>
+    """ % ga_code, unsafe_allow_html=True)
+    
 app = MultiApp()
 
 app.add_app("Home Page", home_page)
