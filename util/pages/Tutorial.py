@@ -163,7 +163,7 @@ def tutorial():
         st.markdown("**II) To download the genomic data use GISAID Database**")
         st.markdown("You need to make an account in GISAID first. Go to [GISAID](https://gisaid.org/) and in the top right corner "
                     "click on **_Log In_**. Create an account and once you log in you will see the home page like below")
-        image = Image.open("data/gisaid.png")
+        image = Image.open("data/gisiad.png")
         st.image(image)
 
         st.markdown("**_A_** : Make sure you are on the **_EpiCov_** tab. Click on the Viral structure of SARS-CoV-2 and "
