@@ -82,7 +82,7 @@ def tutorial():
         st.markdown("**I) To download the protein data use NCBI Virus Database**")
 
         st.markdown("**_A_** : Go to [NCBI Virus](https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/sars-cov-2) dashboard")
-        file_ = open("biohub_webserver/tree/main/data/step1_a.gif","rb")
+        file_ = open("data/step1_a.gif","rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
