@@ -82,7 +82,7 @@ def tutorial():
         st.markdown("**I) To download the protein data use NCBI Virus Database**")
 
         st.markdown("**_A_** : Go to [NCBI Virus](https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/sars-cov-2) dashboard")
-        file_ = open(r"C:\Users\satya\PycharmProjects\mutation_webserver\data\step1_a.gif","rb")
+        file_ = open("https://github.com/psychedelic2007/biohub_webserver/tree/main/data/step1_a.gif","rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
@@ -93,7 +93,7 @@ def tutorial():
 
         st.markdown("**_B_** : Click on the Country for which you want to download the data. In this case we select India "
                     "and then scroll up and select **_All Proteins_**")
-        file_ = open(r"C:\Users\satya\PycharmProjects\mutation_webserver\data\step1_b.gif", "rb")
+        file_ = open("https://github.com/psychedelic2007/biohub_webserver/tree/main/data/step1_b.gif", "rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
@@ -106,7 +106,7 @@ def tutorial():
                     "select filters to narrow down the search to a specific variant. Click on **_Nucleotide Completeness_** " 
                     "and select **_Complete_**. This step makes sure that you are using a complete sequence and not a partial or "
                     "incomplete sequence")
-        file_ = open(r"C:\Users\satya\PycharmProjects\mutation_webserver\data\step1_c.gif", "rb")
+        file_ = open("https://github.com/psychedelic2007/biohub_webserver/tree/main/data/step1_c.gif", "rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
@@ -118,7 +118,7 @@ def tutorial():
         st.markdown("**_D_** : Once you have selected the complete sequence, click on **_Pango Lineage_** to select the "
                     "variant of interest. In this case we are selecting the **_Delta Variant (B.1.617.2)_**. Make sure "
                     "that you enter the variant ID and not the generic name of the variant.")
-        file_ = open(r"C:\Users\satya\PycharmProjects\mutation_webserver\data\step1_d.gif", "rb")
+        file_ = open("https://github.com/psychedelic2007/biohub_webserver/tree/main/data/step1_d.gif", "rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
@@ -130,7 +130,7 @@ def tutorial():
         st.markdown("**_E_** : Once you have selected the variant of your choice, then click on **_Proteins_**. Here you "
                     "can select which viral protein you would like to investigate. In this case we have selected the "
                     "**_Surface Glycoprotein_** of **_Delta Variant_**")
-        file_ = open(r"C:\Users\satya\PycharmProjects\mutation_webserver\data\step1_e.gif", "rb")
+        file_ = open("https://github.com/psychedelic2007/biohub_webserver/tree/main/data/step1_e.gif", "rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
@@ -140,7 +140,7 @@ def tutorial():
         st.markdown("")
 
         st.markdown("**_F_** : Click on **_Collection Date_** to display the sequences in a month wise manner")
-        file_ = open(r"C:\Users\satya\PycharmProjects\mutation_webserver\data\step1_f.gif", "rb")
+        file_ = open("https://github.com/psychedelic2007/biohub_webserver/tree/main/data/step1_f.gif", "rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
@@ -150,7 +150,7 @@ def tutorial():
         st.markdown("")
 
         st.markdown("**_G_** : Finally to download the sequences click on **_Download_** and proceed with the default options")
-        file_ = open(r"C:\Users\satya\PycharmProjects\mutation_webserver\data\step1_g.gif", "rb")
+        file_ = open("https://github.com/psychedelic2007/biohub_webserver/tree/main/data/step1_g.gif", "rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
@@ -163,7 +163,7 @@ def tutorial():
         st.markdown("**II) To download the genomic data use GISAID Database**")
         st.markdown("You need to make an account in GISAID first. Go to [GISAID](https://gisaid.org/) and in the top right corner "
                     "click on **_Log In_**. Create an account and once you log in you will see the home page like below")
-        image = Image.open(r"C:\Users\satya\PycharmProjects\mutation_webserver\data\gisiad.png")
+        image = Image.open("https://github.com/psychedelic2007/biohub_webserver/tree/main/data/gisaid.png")
         st.image(image)
 
         st.markdown("**_A_** : Make sure you are on the **_EpiCov_** tab. Click on the Viral structure of SARS-CoV-2 and "
