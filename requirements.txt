@@ -7,3 +7,5 @@ streamlit_lottie
 biopython
 tensorflow
 scikit-learn
+networkx
+plotly
