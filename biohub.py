@@ -1,6 +1,7 @@
 import warnings
 warnings.simplefilter(action="ignore", category=FutureWarning)
 import streamlit as st
+from streamlit.components.v1 import html
 from PIL import Image
 from multiapp import MultiApp
 from util.pages.home_page import home_page
