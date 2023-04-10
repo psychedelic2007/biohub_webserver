@@ -32,9 +32,6 @@ ga_code = '''
 </script>
 '''
 
-# Display the tracking code using st.components.v1.html
-html(ga_code)
-
 app = MultiApp()
 
 app.add_app("Home Page", home_page)
