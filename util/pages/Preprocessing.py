@@ -46,7 +46,7 @@ def preprocessing():
             if sequence not in sequences:
                 unique_records.append(record)
                 sequences.append(sequence)
-        st.write(len(unique_records))
+        st.write("Total number of sequences after preprocessing is:: ", len(unique_records))
         return unique_records
 
     # Initialize the current index
