@@ -46,6 +46,7 @@ def preprocessing():
             if sequence not in sequences:
                 unique_records.append(record)
                 sequences.append(sequence)
+        st.write(len(unique_records))
         return unique_records
 
     # Initialize the current index
@@ -70,7 +71,6 @@ def preprocessing():
                         with StringIO() as output:
                             SeqIO.write(processed_records, output, "fasta")
                             processed_file = output.getvalue().encode()
-                            st.write(len(processed_file))
 
                         st.download_button(label="Download Preprocessed File", data=processed_file, file_name="preprocessed.fasta", mime="application/octet-stream")
         quote = random.choice(quotes)
