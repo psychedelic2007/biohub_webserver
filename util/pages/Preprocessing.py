@@ -61,7 +61,7 @@ def preprocessing():
                 if(uploaded_file is not None):
                     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
                     records = list(SeqIO.parse(stringio, "fasta"))
-                    st.write(len(records))
+                    st.write("Total number of sequences before preprocessing is:: ",len(records))
 
                     #preprocess the sequences
                     processed_records = preprocess_sequences(records)
