@@ -344,11 +344,11 @@ def combine_feature():
                                         writer.writerow(['Sequence','F3'])
                                         for residue in seq:
                                             writer.writerow([residue,aa_dict2.get(residue)])
-                        output_zip.write(csv_filename)
-                    time.sleep(1)
-                    st.success("Processing Complete!")
-                    with open("output.zip","rb") as fp:
-                        btn = st.download_button(label="Download", data=fp, file_name="output.zip", mime="application/zip")
+                            output_zip.write(csv_filename)
+                            time.sleep(1)
+                        st.success("Processing Complete!")
+                        with open("output.zip","rb") as fp:
+                            btn = st.download_button(label="Download", data=fp, file_name="output.zip", mime="application/zip")
 
                     st.write("")
                     st.write("""***""")
