@@ -16,6 +16,7 @@ from Bio.SeqRecord import SeqRecord
 from io import StringIO
 import time
 import random
+import requests
 
 def feature1():
     st.markdown(
