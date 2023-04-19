@@ -168,6 +168,83 @@ def tutorial():
 
         st.markdown("**_A_** : Make sure you are on the **_EpiCov_** tab. Click on the Viral structure of SARS-CoV-2 and "
                     "it will take you to the working dashboard")
+        file_ = open("data/gisaid_step1.gif", "rb")
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file_.close()
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="gisaid_step1 gif">', unsafe_allow_html=True, )
+
+        st.markdown("")
+        st.markdown("")
+
+        st.markdown("**_B_** : Once you are on the working dashboard navigate to **_Location_** tab. Here you can search "
+                    "the genomic sequence based on the countries. But there is a format that you need to use to search. "
+                    "First type the name of the **_Continent_** followed by a space and then a **_Forward Slash_**, followed "
+                    "by the name of the country. For example if we need to search sequences from India then we will type "
+                    "**_Asia / India_**")
+        file_ = open("data/gisaid_step2.gif", "rb")
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file_.close()
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="gisaid_step2 gif">', unsafe_allow_html=True, )
+
+        st.markdown("")
+        st.markdown("")
+
+        st.markdown("**_C_** : After searching for the country of choice, navigate to the right side to select three important "
+                    "features: **_Complete_**, **_High Coverage_** and **_Collection Date Complete_**. Selecting **_Complete_** "
+                    "assures that the sequences that you will be getting are not incomplete or broken. Selecting **_High Coverage_** "
+                    "affirms that the genomic sequences that will be displayed has less amount of unrecognised base pairs i.e. "
+                    "low value of **_N's (<1% N and <0.05% mutations)_**. And finally selecting **_Collection Date Complete_** "
+                    "allows the server to give you entries with complete collection date.")
+        file_ = open("data/gisaid_step3.gif", "rb")
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file_.close()
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="gisaid_step3 gif">', unsafe_allow_html=True, )
+
+        st.markdown("")
+        st.markdown("")
+
+        st.markdown("**_D_** : Once the filters are selected then you can navigate to **_Lineage_** tab to select the "
+                    "variant of your choice. For example if we want to download the genomic sequence of Delta variant then "
+                    "in the **_Lineage_** tab we will type the ID of the Delta variant (i.e. B.1.617.2).")
+        file_ = open("data/gisaid_step4.gif", "rb")
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file_.close()
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="gisaid_step4 gif">', unsafe_allow_html=True, )
+
+        st.markdown("")
+        st.markdown("")
+
+        st.markdown("**_E_** : Once you have selected the variant of interest then you can navigate to the **_Collection Date_** "
+                    "and collect the sequences in a month wise manner")
+        file_ = open("data/gisaid_step5.gif", "rb")
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file_.close()
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="gisaid_step5 gif">', unsafe_allow_html=True, )
+
+        st.markdown("")
+        st.markdown("")
+
+        st.markdown("**_F_** : After performing the above steps you will get the refined sequences in a month-wise manner. "
+                    "To download the sequences you can click on the **_Square Box_** on the left side of **_Virus Name_** tab. "
+                    "This will select all the sequences in the entry and then you can navigate to the bottom right and click on "
+                    "the **_Download_** button to download the dataset. Once you click on **_Download_** a new window will pop up "
+                    "asking you to select the format of the dataset. Click on **_Nucleotide Sequences (FASTA)_** to download the "
+                    "dataset in FASTA format and then click on **_Download_**. Then you will be asked to accept the terms and "
+                    "conditions of GISAID database. Click on **_I agree to the terms and conditions_** and then click **_Download_**.")
+        file_ = open("data/gisaid_step6.gif", "rb")
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file_.close()
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="gisaid_step6 gif">', unsafe_allow_html=True, )
+
+        st.markdown("")
+        st.markdown("")
+        st.write("***")
         
 
 
