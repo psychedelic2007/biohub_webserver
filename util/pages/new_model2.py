@@ -133,6 +133,7 @@ def new_model2():
 
                 # Split the data into training and testing sets
                 x = df.drop('Target', axis=1)
+                x = np.asarray(X).astype(np.float32)
                 y = df['Target']
                 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=test_size / 100, random_state=42)
 
