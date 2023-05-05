@@ -19,4 +19,4 @@ def theory():
         unsafe_allow_html=True,
     )
     
-    st.header("Theory Corner")
+    st.title("Theory Corner")
