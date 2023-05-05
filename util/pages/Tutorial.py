@@ -245,15 +245,30 @@ def tutorial():
         st.markdown("")
         st.markdown("")
         st.write("***")
-        
-
-
-
-
-
 
     with st.expander("Step 2: Dataset Preprocessing"):
-        st.write("")
+        st.markdown("**_A_** : After downloading the dataset it is important to preprocess it as the raw data consists of many junk and broken data."
+                   "To preprocess the data click on **_Preprocessing_**tab from the main menu and then upload the sequence file that you have downloaded "
+                   "in previous tep in **_FASTA_** format. Click on **_Submit_** after which you will get your preprocessed data. To know more about what exactly "
+                   "the server does in preprocessing please visit the **_Theory Corner_**.")
+        file_ = open("data/preprocessing_0.gif", "rb")
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file_.close()
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="preprocessing_0 gif">', unsafe_allow_html=True, )
+
+        st.markdown("")
+        st.markdown("")
+        
+        st.markdown("**_B_**: If you are unsure about which data file or what type of datafile you need to upload, you click on **_Load Example_** and then "
+                   "click on **_Submit_**. Once the preprocessing is done, you can download the file and then view it to understand the file type and its "
+                   "architecture.")
+        file_ = open("data/preprocessing_1.gif", "rb")
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file_.close()
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="preprocessing_1 gif">', unsafe_allow_html=True, )
+        st.write("***")
 
     with st.expander("Step 3: Entropy Calculation"):
         st.write("")
