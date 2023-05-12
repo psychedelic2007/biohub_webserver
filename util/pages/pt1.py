@@ -32,6 +32,11 @@ def pt1():
             else:
                 comparison.append(1)
         return comparison
+    
+    def process_tree(uploaded_file):
+        stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+        tree = Phylo.read(stringio, "newick")
+        return tree
 
     def process_tree(uploaded_file, entrez_email):
         stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
@@ -62,7 +67,8 @@ def pt1():
     if st.button("Submit"):
         if uploaded_file is not None:
             with st.spinner("Processing..."):
-                tree = process_tree(uploaded_file, entrez_email)
+                tree = process_tree(uploaded_file)
+                process_tree(tree)
                 Entrez.email = entrez_email
                 seq_list = []
 
