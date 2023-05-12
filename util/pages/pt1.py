@@ -32,11 +32,6 @@ def pt1():
             else:
                 comparison.append(1)
         return comparison
-    
-    def process_tree(uploaded_file):
-        stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-        tree = Phylo.read(stringio, "newick")
-        return tree
 
     def process_tree(uploaded_file, entrez_email):
         stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
@@ -58,6 +53,7 @@ def pt1():
         fig.add_trace(trace1)
         fig.add_trace(trace2)
         st.plotly_chart(fig)
+        return tree
 
     st.title("Welcome to the Preprocessing Page!")
     st.subheader("Upload your Newick Tree file")
