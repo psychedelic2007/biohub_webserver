@@ -8,7 +8,7 @@ import csv
 import zipfile
 
 # Streamlit app
-def phylo_try1():
+def pt1():
     st.markdown(
         """
         <style>
