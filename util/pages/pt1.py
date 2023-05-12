@@ -68,7 +68,7 @@ def pt1():
         if uploaded_file is not None:
             with st.spinner("Processing..."):
                 tree = process_tree(uploaded_file, entrez_email)
-                process_tree(tree)
+                process_tree(tree, entrez_email)
                 Entrez.email = entrez_email
                 seq_list = []
 
