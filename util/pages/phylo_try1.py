@@ -1,88 +1,111 @@
 import streamlit as st
-from Bio import Phylo
-from Bio.Seq import Seq
+import networkx as nx
+from Bio import Phylo, Entrez, SeqIO
 from io import StringIO
+import plotly.graph_objs as go
+import random
+import csv
+import zipfile
 
+# Streamlit app
 def phylo_try1():
-    # Define the function to compare the descendant sequence with its ancestor
-    def compare_sequences(tree):
-        # Initialize an empty list to store the comparison results for all descendants
-        comparison_list = []
+    st.markdown(
+        """
+        <style>
+        [data-testid="stSidebar"][aria-expanded="true"]{
+            background-color: #48a2cf;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-        # Iterate over each descendant clade in the tree
-        for descendant in tree.get_terminals():
-            # Get the ancestor node for the current descendant
-            ancestor = tree.common_ancestor(descendant)
+    with open("quotes.txt", "r", encoding="utf-8") as f:
+        file_text = f.read()
+        quotes = file_text.split("\n\n")
 
-            # Get the sequences of the descendant and ancestor nodes
-            descendant_seq = Seq(descendant.name)
-            ancestor_seq = Seq(ancestor.name)
+    def compare_sequences(seq1, seq2):
+        comparison = []
+        for i in range(len(seq1)):
+            if seq1[i] == seq2[i]:
+                comparison.append(0)
+            else:
+                comparison.append(1)
+        return comparison
 
-            # Compare the sequences residue-wise
-            comparison = [descendant_seq[i] != ancestor_seq[i] for i in range(len(descendant_seq))]
+    def process_tree(uploaded_file, entrez_email):
+        stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+        tree = Phylo.read(stringio, "newick")
+        G = Phylo.to_networkx(tree)
+        pos = nx.kamada_kawai_layout(G)  # Layout algorithm
+        Xn = [pos[k][0] for k in G.nodes()]
+        Yn = [pos[k][1] for k in G.nodes()]
+        Xe = []
+        Ye = []
+        for e in G.edges():
+            Xe += [pos[e[0]][0], pos[e[1]][0], None]
+            Ye += [pos[e[0]][1], pos[e[1]][1], None]
+        trace1 = go.Scatter(x=Xe, y=Ye, mode='lines', line=dict(color='rgb(210,210,210)', width=1), hoverinfo='none')
+        trace2 = go.Scatter(x=Xn, y=Yn, mode='markers', name='nodes', marker=dict(symbol='circle-dot', size=18, color='#6175c1', line=dict(color='rgb(50,50,50)', width=1)), text=[node for node in G.nodes()], hoverinfo='text')
+        axis = dict(showline=False, zeroline=False, showgrid=False, showticklabels=False)
+        layout = go.Layout(title='Phylogenetic Tree', width=800, height=800, showlegend=False, xaxis=axis, yaxis=axis, margin=dict(l=40, r=40, b=85, t=100), hovermode='closest')
+        fig = go.Figure(layout=layout)
+        fig.add_trace(trace1)
+        fig.add_trace(trace2)
+        st.plotly_chart(fig)
 
-            # Append the comparison result to the list
-            comparison_list.append(comparison)
+    st.title("Welcome to the Preprocessing Page!")
+    st.subheader("Upload your Newick Tree file")
+    uploaded_file = st.file_uploader("Upload", type=["nh", "dnd", "nwk"])
+    entrez_email = st.text_input("Enter your email for Entrez login: ")
 
-        return comparison_list
+    if st.button("Submit"):
+        if uploaded_file is not None:
+            with st.spinner("Processing..."):
+                process_tree(uploaded_file, entrez_email)
+                Entrez.email = entrez_email
+                seq_list = []
 
-    # Set the app title
-    st.title("Phylogenetic Sequence Comparison")
+                num_clades = len(list(tree.find_clades()))
 
-    # Allow the user to upload a newick file
-    uploaded_file = st.file_uploader("Choose a newick file", type="nh")
+                progress_bar = st.progress(0)
 
-    if uploaded_file:
-        # Parse the newick file into a Phylo object
-        tree = Phylo.read(StringIO(uploaded_file.getvalue().decode()), "newick")
+                for i, clade in enumerate(tree.find_clades()):
+                    if clade.name:
+                        name_parts = clade.name.split('_')
+                        st.write(f'Branch: {name_parts[0]} | Sequence: {name_parts[1]}')
+                        handle = Entrez.efetch(db="protein", id=name_parts[1], rettype="fasta", retmode="text")
+                        record = SeqIO.read(handle, 'fasta')
+                        seq_list.append(record)
+                    else:
+                        st.write(f'Node: {clade.confidence}')
 
-        # Compare the sequences of the descendant node and its ancestor
-        comparison = compare_sequences(tree)
+            progress_bar.progress((i + 1) / num_clades)
 
-        # Display the comparison result as a table
-        # result_table = []
-        # for i, val in enumerate(comparison):
-        #     result_table.append((i + 1, "Different" if val else "Same"))
-        #
-        # st.write("Comparison result:")
-        # st.table(result_table)
-        #
-        # # Provide a download button for the comparison result as a CSV file
-        # csv = "position,difference\n"
-        # for i, val in enumerate(comparison):
-        #     csv += f"{i + 1},{1 if val else 0}\n"
-        # st.download_button(
-        #     label="Download comparison result as CSV",
-        #     data=csv.encode(),
-        #     file_name="comparison_result.csv",
-        #     mime="text/csv"
-        # )
+        st.success("Written the sequences in the list")
 
-        # Create a CSV string containing the residue-wise comparison results
-        csv = "accession_id,target\n"
-        for descendant in tree.get_terminals():
-            # Get the ancestor node for the current descendant
-            ancestor = tree.common_ancestor(descendant)
+        zip_filename = "sequences.zip"
+        with zipfile.ZipFile(zip_filename, "w") as zip_file:
+            for record in seq_list:
+                seq_id = record.id
+                seq_branch = record.seq
+                seq_nodal = seq_list[seq_list.index(record) + 1].seq if seq_list.index(record) + 1 < len(seq_list) else ""
+                comparison = compare_sequences(seq_branch, seq_nodal)
+                csv_filename = f"{seq_id}.csv"
 
-            # Get the accession ID of the descendant node
-            accession_id = "unknown"
-            if "|" in descendant.name:
-                accession_id = descendant.name.split("|")[1]
+                with open(csv_filename, "w") as f:
+                    writer = csv.writer(f)
+                    writer.writerow(["Residue Number", "Comparison"])
+                    for residue_num, comparison_value in enumerate(comparison):
+                        writer.writerow([residue_num + 1, comparison_value])
 
-            # Get the sequences of the descendant and ancestor nodes
-            descendant_seq = Seq(descendant.name)
-            ancestor_seq = Seq(ancestor.name)
+            zip_file.write(csv_filename)
 
-            # Compare the sequences residue-wise and append the comparison result to the CSV string
-            for i in range(len(descendant_seq)):
-                target = "1" if descendant_seq[i] != ancestor_seq[i] else "0"
-                csv += f"{accession_id},{target}\n"
+        st.download_button(label="Download ZIP", data=zip_filename, file_name=zip_filename, mime="application/zip")
 
-        # Display the comparison result as a download link to a CSV file
-        st.download_button(
-            label="Download comparison result as CSV",
-            data=csv.encode(),
-            file_name="comparison_result.csv",
-            mime="text/csv"
-        )
 
+    st.write("")
+    st.write("""***""")
+    quote = random.choice(quotes)
+    st.write(quote)
+    st.write("""***""")
