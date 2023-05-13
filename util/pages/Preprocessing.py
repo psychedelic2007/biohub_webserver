@@ -37,7 +37,7 @@ def preprocessing():
 
     def preprocess_sequences(records):
         #remove sequences with "X"
-        print("Removing the deuplicate sequences...")
+        print("Removing the duplicate sequences...")
         records = [r for r in records if "X" not in r.seq]
 
         #remove duplicate sequences
@@ -53,10 +53,10 @@ def preprocessing():
     
     def filter_sequences(sequences, target_length):
         print("Removing unequal length sequences...")
-        filtered_sequences = {}
-        for accession_id, sequence in sequences.items():
-            if(len(sequence) == target_length):
-                filtered_sequences[accession_id] = sequence
+        filtered_sequences = []
+        for record in sequences:
+            if(len(record.seq) == target_length):
+                filtered_sequences.append(record)
         st.write("Total number of sequences after making sequences of equal length is:: ", len(filtered_sequences))
         return filtered_sequences
 
