@@ -53,7 +53,7 @@ def phylo_compare():
     fasta_file = st.file_uploader("upload file", type=["fasta","fa"])
 
     if(fasta_file is not None):
-        stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+        stringio = StringIO(fasta_file.getvalue().decode("utf-8"))
         records = list(SeqIO.parse(stringio, "fasta"))
         st.write("Enter Accession ID:")
         for i in range(len(records)):
