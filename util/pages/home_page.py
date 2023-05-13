@@ -90,6 +90,23 @@ def home_page():
         create_st_button(link_text, link_url, st_col=st_col)
     st.markdown("---")
 
+    def set_theme(theme):
+        if theme == "light":
+	    st.set_theme("default")
+    	elif theme == "dark":
+            st.set_theme("dark")
+
+    # Theme button
+    theme_button = st.button("Toggle Theme")
+
+    # Check if the theme button is clicked
+    if theme_button:
+        # Check the current theme
+        current_theme = st.config.get_option("theme.base")
+        # Toggle the theme
+        new_theme = "dark" if current_theme == "light" else "light"
+        set_theme(new_theme)
+
 
     #st.write("# Welcome to BioHub! 👋")
 
