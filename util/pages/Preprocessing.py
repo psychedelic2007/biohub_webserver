@@ -76,7 +76,7 @@ def preprocessing():
 
                     #preprocess the sequences
                     processed_records = preprocess_sequences(records)
-                    sequence_filtered = filter_sequences(processed_records,user_length)
+                    sequence_filtered = filter_sequences(processed_records,int(user_length))
 
                     #download the preprocessed file
                     if(len(sequence_filtered)>0):
