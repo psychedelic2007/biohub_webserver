@@ -26,6 +26,23 @@ def home_page():
         if (r.status_code != 200):
             return None
         return r.json()
+    
+    def set_theme(theme):
+	if(theme == 'light'):
+	    st.set_theme("deafult")
+	elif(theme == 'dark'):
+	    st.set_theme("dark")
+    
+    #Theme Button
+    theme_button = st.button("Toggle Theme")
+
+    #Check if the theme button is clicked
+    if(theme_button):
+	#check the current theme
+	current_theme = st.config.get_option("theme.base")
+	#Toggle the theme
+	new_theme = "dark" if current_theme == "light" else "light"
+	set_theme(new_theme)
 
     lottie_hello = load_lottiefile("https://assets5.lottiefiles.com/packages/lf20_ldf6z8do.json")
 
@@ -89,24 +106,6 @@ def home_page():
             i=0
         create_st_button(link_text, link_url, st_col=st_col)
     st.markdown("---")
-
-    def set_theme(theme):
-        if theme == "light":
-	    st.set_theme("default")
-    	elif theme == "dark":
-            st.set_theme("dark")
-
-    # Theme button
-    theme_button = st.button("Toggle Theme")
-
-    # Check if the theme button is clicked
-    if theme_button:
-        # Check the current theme
-        current_theme = st.config.get_option("theme.base")
-        # Toggle the theme
-        new_theme = "dark" if current_theme == "light" else "light"
-        set_theme(new_theme)
-
 
     #st.write("# Welcome to BioHub! 👋")
 
