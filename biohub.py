@@ -18,7 +18,7 @@ from util.pages.final_ml_model_training import training
 from util.pages.entropy_calculation import mrf
 from util.pages.phylo import phylo
 from util.pages.phylo_try import phylo_try
-from util.pages.pt1 import pt1
+from util.pages.phylo_compare import phylo_compare
 from util.pages.Theory_corner import theory
 
 app = MultiApp()
@@ -38,5 +38,5 @@ app.add_app("Training", training)
 app.add_app("MRF", mrf)
 app.add_app("Phylo", phylo)
 app.add_app("Phylo Try", phylo_try)
-app.add_app("Pt1", pt1)
+app.add_app("Phylo compare", phylo_compare)
 app.run()
