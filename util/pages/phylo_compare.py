@@ -1,8 +1,22 @@
 import streamlit as st
+import numpy as np
 import pandas as pd
-import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os.path
+import pathlib
+from collections import Counter
+import csv
+import math
 import zipfile
+from Bio import SeqIO
+from Bio import AlignIO
+from Bio.Align.Applications import MuscleCommandline
+from Bio.SeqRecord import SeqRecord
 from io import StringIO
+import time
+import random
+import requests
 
 def phylo_compare():
 
