@@ -29,9 +29,9 @@ def home_page():
     
     def set_theme(theme):
 	if(theme == 'light'):
-	    st.set_theme("deafult")
+		st.set_theme("deafult")
 	elif(theme == 'dark'):
-	    st.set_theme("dark")
+		st.set_theme("dark")
     
     #Theme Button
     theme_button = st.button("Toggle Theme")
