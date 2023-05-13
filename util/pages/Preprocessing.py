@@ -24,6 +24,7 @@ def preprocessing():
     st.title("Welcome to the Preprocessing Page!")
     st.subheader("Upload your FASTA file")
     uploaded_file = st.file_uploader("Upload", type=["fasta"])
+    user_length = st.text_input("Enter the legth of the Sequence: ")
     col1, col2 = st.columns([1,10])
     with col1:
         show_submit = st.button("Submit")
@@ -75,7 +76,7 @@ def preprocessing():
 
                     #preprocess the sequences
                     processed_records = preprocess_sequences(records)
-                    sequence_filtered = filter_sequences(processed_records)
+                    sequence_filtered = filter_sequences(processed_records,user_length)
 
                     #download the preprocessed file
                     if(len(sequence_filtered)>0):
