@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 import zipfile
+from io import StringIO
 
 def phylo_compare():
 
