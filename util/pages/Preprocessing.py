@@ -36,6 +36,7 @@ def preprocessing():
 
     def preprocess_sequences(records):
         #remove sequences with "X"
+        print("Removing the deuplicate sequences...")
         records = [r for r in records if "X" not in r.seq]
 
         #remove duplicate sequences
@@ -46,8 +47,17 @@ def preprocessing():
             if sequence not in sequences:
                 unique_records.append(record)
                 sequences.append(sequence)
-        st.write("Total number of sequences after preprocessing is:: ", len(unique_records))
+        st.write("Total number of sequences after removing duplicate sequences is:: ", len(unique_records))
         return unique_records
+    
+    def filter_sequences(sequences, target_length):
+        print("Removing unequal length sequences...")
+        filtered_sequences = {}
+        for accession_id, sequence in sequences.items():
+            if(len(sequence) == target_length):
+                filtered_sequences[accession_id] = sequence
+        st.write("Total number of sequences after making sequences of equal length is:: ", len(filtered_sequences))
+        return filtered_sequences
 
     # Initialize the current index
     if "current_index" not in st.session_state:
@@ -65,11 +75,12 @@ def preprocessing():
 
                     #preprocess the sequences
                     processed_records = preprocess_sequences(records)
+                    sequence_filtered = filter_sequence(processed_records)
 
                     #download the preprocessed file
-                    if(len(processed_records)>0):
+                    if(len(sequence_filtered)>0):
                         with StringIO() as output:
-                            SeqIO.write(processed_records, output, "fasta")
+                            SeqIO.write(sequence_filtered, output, "fasta")
                             processed_file = output.getvalue().encode()
 
                         st.download_button(label="Download Preprocessed File", data=processed_file, file_name="preprocessed.fasta", mime="application/octet-stream")
