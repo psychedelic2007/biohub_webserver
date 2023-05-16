@@ -88,7 +88,7 @@ def entropy():
                         for aa in unique_aa:
                             n_i = list_input.count(aa)
                             P_i = n_i / float(M)
-                            entropy_i = P_i * (math.log(P_i, 2))
+                            entropy_i = P_i * (math.log(P_i, 10))
                             entropy_list.append(entropy_i)
                         sh_entropy = -(sum(entropy_list))
                         return sh_entropy
