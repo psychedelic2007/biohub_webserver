@@ -47,7 +47,7 @@ def home_page():
         create_st_button(link_text, link_url, st_col=st.sidebar)
 
     database_link_dict = {
-        "GitHub Page": "https://github.com/psychedelic2007",
+        "GitHub Page": "https://github.com/psychedelic2007/biohub_webserver",
         "GISAID": "https://gisaid.org/",
         "NCBI Virus": "https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/sars-cov-2",
         "Influenza Databse": "https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database"
